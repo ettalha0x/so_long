@@ -6,82 +6,84 @@
 /*   By: nettalha <nettalha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 11:23:37 by nettalha          #+#    #+#             */
-/*   Updated: 2022/12/12 11:46:43 by nettalha         ###   ########.fr       */
+/*   Updated: 2022/12/24 17:51:00 by nettalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**check_forward(char **map)
+int	replace(int i, int p, int j, char **map)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (map[i])
+	if (map[i][j + 1] == '0' || map[i][j + 1] == 'C' || map[i][j + 1] == 'E')
 	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == 'P')
-			{
-				if (map[i][j + 1] != '1')
-					map[i][j + 1] = 'P';
-				if (map[i + 1][j] != '1')
-					map[i + 1][j] = 'P';
-			}
-			j++;
-		}
-		i++;
+		map[i][j + 1] = 'P';
+		p = 1;
 	}
-	return (map);
+	if (map[i][j - 1] == '0' || map[i][j - 1] == 'C' || map[i][j - 1] == 'E')
+	{
+		map[i][j - 1] = 'P';
+		p = 1;
+	}
+	if (map[i + 1][j] == '0' || map[i + 1][j] == 'C' || map[i + 1][j] == 'E')
+	{
+		map[i + 1][j] = 'P';
+		p = 1;
+	}
+	if (map[i - 1][j] == '0' || map[i - 1][j] == 'C' || map[i - 1][j] == 'E')
+	{
+		map[i - 1][j] = 'P';
+		p = 1;
+	}
+	return (p);
 }
 
-char	**check_backward(char **map)
+void	path_checker(char **map)
 {
+	int	p;
 	int	i;
 	int	j;
 
-	i = count_map_lines(map) - 1;
-	j = ft_strlen(map[0]);
-	while (i >= 0)
-	{
-		j = ft_strlen(map[0]) - 1;
-		while (j >= 0)
-		{
-			if (map[i][j] == 'P')
-			{
-				if (map[i][j - 1] != '1')
-					map[i][j - 1] = 'P';
-				if (map[i - 1][j] != '1')
-					map[i - 1][j] = 'P';
-			}
-			j--;
-		}
-		i--;
-	}
-	return (map);
-}
-
-int	check_path(char **map)
-{
-	int	i;
-	int	j;
-
-	map = check_forward(map);
-	map = check_backward(map);
-	map = check_forward(map);
-	map = check_backward(map);
+	p = 1;
 	i = 0;
 	j = 0;
-	while (map[i])
+	while (p == 1)
+	{
+		p = 0;
+		i = 0;
+		while (map[i])
+		{
+			j = 0;
+			while (map[i][j])
+			{
+				if (map[i][j] == 'P')
+				{
+					p = replace(i, p, j, map);
+				}
+				j++;
+			}
+			i++;
+		}
+	}
+}
+
+int	check_path(t_game *g)
+{
+	int	i;
+	int	j;
+
+	path_checker(g->map);
+	i = 0;
+	j = 0;
+	while (g->map[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (g->map[i][j])
 		{
-			if (map[i][j] == 'C' || map[i][j] == 'E')
+			if (g->map[i][j] == 'C' || g->map[i][j] == 'E')
+			{
+				ft_printf("path error !");
 				return (0);
+			}
 			j++;
 		}
 		i++;

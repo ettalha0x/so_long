@@ -1,41 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_ud.c                                     :+:      :+:    :+:   */
+/*   check_ecp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nettalha <nettalha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 11:21:21 by nettalha          #+#    #+#             */
-/*   Updated: 2022/12/27 20:32:45 by nettalha         ###   ########.fr       */
+/*   Created: 2022/12/23 18:18:47 by nettalha          #+#    #+#             */
+/*   Updated: 2022/12/24 15:44:44 by nettalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_map_ud(t_game *g)
+int	check_ecp(t_game *g)
 {
+	int	i;
 	int	j;
-	int	len;
 
-	j = 0;
-	len = ft_strlen(g->map[0]) - 2;
-	while (j <= len)
+	i = 0;
+	while (g->map[i])
 	{
-		if (g->map[0][j++] != '1')
+		j = 0;
+		while (g->map[i][j])
 		{
-			ft_printf("up error !\n");
-			return (0);
+			if (g->map[i][j] == 'E')
+				g->n_exit++;
+			if (g->map[i][j] == 'C')
+				g->n_colect++;
+			if (g->map[i][j] == 'P')
+				g->n_player++;
+			j++;
 		}
+		i++;
 	}
-	j = 0;
-	len = ft_strlen(g->map[count_map_lines(g->map) - 1]) - 2;
-	while (j <= len)
+	if (g->n_exit != 1 || g->n_colect == 0 || g->n_player != 1)
 	{
-		if (g->map[count_map_lines(g->map) - 1][j++] != '1')
-		{
-			ft_printf("bottom error !\n");
-			return (0);
-		}
+		ft_printf("ecp error !");
+		return (0);
 	}
 	return (1);
 }

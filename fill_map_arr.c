@@ -6,7 +6,7 @@
 /*   By: nettalha <nettalha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 11:26:31 by nettalha          #+#    #+#             */
-/*   Updated: 2022/12/21 10:43:46 by nettalha         ###   ########.fr       */
+/*   Updated: 2022/12/27 19:41:42 by nettalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**fill_map_arr(char *file)
 	if (!(ft_strnstr(file, ".ber", ft_strlen(file))))
 	{
 		ft_printf("file name error");
-		exit(EXIT_FAILURE);
+		exit(0);
 	}
 	fd = open(file, O_RDONLY);
 	map = malloc(1000);

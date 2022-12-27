@@ -6,34 +6,37 @@
 /*   By: nettalha <nettalha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:23:58 by nettalha          #+#    #+#             */
-/*   Updated: 2022/12/21 20:19:04 by nettalha         ###   ########.fr       */
+/*   Updated: 2022/12/27 20:58:46 by nettalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_game	mlx;
-	int		i;
 
-	mlx.n_colect = 1;
-	mlx.map = fill_map_arr("map.ber");
-	if (!check_map(mlx.map))
+	vars_init(&mlx);
+	ft_printf("moves : %d\n", mlx.moves);
+	if (argc == 2)
 	{
-		ft_printf("Error\nmap is wrong");
-		exit(EXIT_FAILURE);
+		mlx.map = fill_map_arr(argv[1]);
+		if (!check_map(&mlx))
+		{
+			ft_printf("Error\nmap is wrong");
+			exit(EXIT_FAILURE);
+		}
+		game_init(&mlx);
+		imgs_init(&mlx);
+		mlx.map = fill_map_arr(argv[1]);
+		ft_build(&mlx);
+		mlx_hook(mlx.win, 2, 0, key_hook, &mlx);
+		mlx_hook(mlx.win, 17, 0, close_win, &mlx);
+		mlx_loop(mlx.mlx);
 	}
-	i = 0;
-	mlx.map_w = (ft_strlen(mlx.map[0]) - 1) * 50;
-	mlx.map_h = count_map_lines(mlx.map) * 50;
-	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx, mlx.map_w, mlx.map_h, "So long");
-	while (i < count_map_lines(mlx.map))
-		free(mlx.map[i++]);
-	free(mlx.map);
-	mlx.map = fill_map_arr("map.ber");
-	ft_build(&mlx);
-	mlx_key_hook(mlx.win, key_hook, &mlx);
-	mlx_loop(mlx.mlx);
+	else
+	{
+		ft_printf("Error : invalid syntax");
+		exit(0);
+	}
 }

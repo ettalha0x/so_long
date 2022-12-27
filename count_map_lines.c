@@ -6,7 +6,7 @@
 /*   By: nettalha <nettalha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 11:39:05 by nettalha          #+#    #+#             */
-/*   Updated: 2022/12/12 11:39:22 by nettalha         ###   ########.fr       */
+/*   Updated: 2022/12/27 19:44:46 by nettalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	count_map_lines(char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (map[i])

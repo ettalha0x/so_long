@@ -6,7 +6,7 @@
 #    By: nettalha <nettalha@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/12 12:01:38 by nettalha          #+#    #+#              #
-#    Updated: 2022/12/19 20:50:03 by nettalha         ###   ########.fr        #
+#    Updated: 2022/12/27 20:43:46 by nettalha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,13 @@ SRCS	=	so_long.c\
 			check_map_in.c\
 			check_map.c\
 			check_path.c\
+			check_ecp.c\
 			ft_strnstr.c\
 			ft_build.c\
 			gnl/get_next_line.c\
 			gnl/get_next_line_utils.c\
+			init.c\
+			move_player.c\
 			key_hook.c\
 
 OBJS = ${SRCS:.c=.o}
@@ -40,7 +43,8 @@ RM		= rm -f
 	$(CC) $(FLAGS)  -c $^ -o $@
 
 $(NAME):	$(OBJS)
-		$(CC) ft_printf/*.c -lmlx -framework OpenGL -framework AppKit $^ -o $@
+		cd ft_printf/ && make && make clean
+		$(CC) ft_printf/libftprintf.a -lmlx -framework OpenGL -framework AppKit $^ -o $@
 all:	${NAME}
 
 clean	:
