@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_map_arr.c                                     :+:      :+:    :+:   */
+/*   count_file_lines.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nettalha <nettalha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 11:26:31 by nettalha          #+#    #+#             */
-/*   Updated: 2023/01/01 15:55:23 by nettalha         ###   ########.fr       */
+/*   Created: 2023/01/01 14:09:32 by nettalha          #+#    #+#             */
+/*   Updated: 2023/01/01 16:13:23 by nettalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**fill_map_arr(t_game	*game, char *file)
+int	count_file_lines(char *file)
 {
-	int		len;
-	int		fd;
+	char	*line;
 	int		i;
+	int		fd;
 
-	i = 0;
-	if (!check_map_name(file))
-	{
-		ft_printf("file name error");
-		exit(0);
-	}
-	len = count_file_lines(file);
-	game->map = malloc(sizeof(char *) * (len + 1));
-	game->map[len] = NULL;
-	if (!game->map)
-		return (0);
 	fd = open(file, O_RDONLY);
+	line = get_next_line(fd);
 	i = 0;
-	game->map[i] = get_next_line(fd);
-	while (game->map[i])
+	while (line)
 	{
 		i++;
-		game->map[i] = get_next_line(fd);
+		free(line);
+		line = get_next_line(fd);
 	}
-	return (game->map);
+	close(fd);
+	return (i);
 }

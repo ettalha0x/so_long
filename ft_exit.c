@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_map_arr.c                                     :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nettalha <nettalha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 11:26:31 by nettalha          #+#    #+#             */
-/*   Updated: 2023/01/01 15:55:23 by nettalha         ###   ########.fr       */
+/*   Created: 2022/12/31 20:15:34 by nettalha          #+#    #+#             */
+/*   Updated: 2023/01/01 18:20:46 by nettalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**fill_map_arr(t_game	*game, char *file)
+void	ft_exit(t_game *game)
 {
-	int		len;
-	int		fd;
-	int		i;
+	int	i;
 
 	i = 0;
-	if (!check_map_name(file))
-	{
-		ft_printf("file name error");
-		exit(0);
-	}
-	len = count_file_lines(file);
-	game->map = malloc(sizeof(char *) * (len + 1));
-	game->map[len] = NULL;
-	if (!game->map)
-		return (0);
-	fd = open(file, O_RDONLY);
+	while (i < count_map_lines(game->map))
+		free(game->map[i++]);
+	free(game->map);
+	mlx_destroy_window(game->mlx, game->win);
+	exit(0);
+}
+
+void	ft_exit0(t_game *game)
+{
+	int	i;
+
 	i = 0;
-	game->map[i] = get_next_line(fd);
-	while (game->map[i])
-	{
-		i++;
-		game->map[i] = get_next_line(fd);
-	}
-	return (game->map);
+	while (i < count_map_lines(game->map))
+		free(game->map[i++]);
+	free(game->map);
+	exit(0);
 }

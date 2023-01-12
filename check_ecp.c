@@ -6,7 +6,7 @@
 /*   By: nettalha <nettalha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 18:18:47 by nettalha          #+#    #+#             */
-/*   Updated: 2022/12/24 15:44:44 by nettalha         ###   ########.fr       */
+/*   Updated: 2022/12/29 19:55:27 by nettalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	check_ecp(t_game *g)
 	}
 	if (g->n_exit != 1 || g->n_colect == 0 || g->n_player != 1)
 	{
-		ft_printf("ecp error !");
+		ft_printf("ecp error !\n");
 		return (0);
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: nettalha <nettalha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 16:26:33 by nettalha          #+#    #+#             */
-/*   Updated: 2022/12/27 20:55:23 by nettalha         ###   ########.fr       */
+/*   Updated: 2023/01/01 14:47:13 by nettalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ void	vars_init(t_game *game)
 void	imgs_init(t_game *game)
 {
 	game->img.wa = mlx_xpm_file_to_image
-		(game->mlx, "img/w.xpm", &game->img.w, &game->img.h);
+		(game->mlx, "textures/w.xpm", &game->img.w, &game->img.h);
 	game->img.c = mlx_xpm_file_to_image
-		(game->mlx, "img/c.xpm", &game->img.w, &game->img.h);
+		(game->mlx, "textures/c.xpm", &game->img.w, &game->img.h);
 	game->img.p = mlx_xpm_file_to_image
-		(game->mlx, "img/p.xpm", &game->img.w, &game->img.h);
+		(game->mlx, "textures/pr.xpm", &game->img.w, &game->img.h);
 	game->img.e = mlx_xpm_file_to_image
-		(game->mlx, "img/e.xpm", &game->img.w, &game->img.h);
+		(game->mlx, "textures/e.xpm", &game->img.w, &game->img.h);
 }

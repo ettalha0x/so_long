@@ -6,7 +6,7 @@
 /*   By: nettalha <nettalha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 11:22:19 by nettalha          #+#    #+#             */
-/*   Updated: 2022/12/24 15:45:48 by nettalha         ###   ########.fr       */
+/*   Updated: 2022/12/29 19:54:56 by nettalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_map_in(t_game *g)
 				&& g->map[i][j] != 'C' && g->map[i][j] != 'E'
 				&& g->map[i][j] != 'P' && g->map[i][j] != '\n')
 			{
-				ft_printf("map_in error !");
+				ft_printf("map_in error !\n");
 				return (0);
 			}
 			j++;

@@ -6,7 +6,7 @@
 /*   By: nettalha <nettalha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 11:23:37 by nettalha          #+#    #+#             */
-/*   Updated: 2022/12/24 17:51:00 by nettalha         ###   ########.fr       */
+/*   Updated: 2022/12/29 19:55:20 by nettalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	check_path(t_game *g)
 		{
 			if (g->map[i][j] == 'C' || g->map[i][j] == 'E')
 			{
-				ft_printf("path error !");
+				ft_printf("path error !\n");
 				return (0);
 			}
 			j++;

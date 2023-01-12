@@ -6,7 +6,7 @@
 /*   By: nettalha <nettalha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 18:09:38 by nettalha          #+#    #+#             */
-/*   Updated: 2022/12/27 22:49:55 by nettalha         ###   ########.fr       */
+/*   Updated: 2022/12/30 19:44:51 by nettalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,21 @@
 
 void	move_u(t_game *game)
 {
+	help_clear(game, game->map[game->x_p][game->y_p]);
 	if (game->map[game->x_p][game->y_p] == 'E' && game->n_colect == 0)
 	{
-		mlx_clear_window(game->mlx, game->win);
 		game->map[game->x_p + 1][game->y_p] = '0';
-		game->moves++;
-		ft_printf("moves : %d\n", game->moves);
-		game->endgame = 1;
-		ft_build(game);
-		ft_printf(">>>>>Congratulation you win<<<<<\n");
-		exit(0);
+		help0(game);
 	}
 	else if (game->map[game->x_p][game->y_p] == '1')
 		game->x_p += 1;
 	else if (game->map[game->x_p][game->y_p] == 'E')
 	{
-		mlx_clear_window(game->mlx, game->win);
 		game->map[game->x_p + 1][game->y_p] = '0';
-		ft_build(game);
-		mlx_put_image_to_window
-		(game->mlx, game->win, game->img.p, game->y_p * 100, game->x_p * 100);
-		game->moves++;
-		ft_printf("moves : %d\n", game->moves);
+		help1(game);
 	}
 	else
 	{
-		mlx_clear_window(game->mlx, game->win);
 		if (game->map[game->x_p][game->y_p] == 'C')
 			game->n_colect -= 1;
 		game->map[game->x_p][game->y_p] = 'P';
@@ -47,40 +36,27 @@ void	move_u(t_game *game)
 			game->map[game->x_p + 1][game->y_p] = '0';
 		else
 			game->map[game->x_p + 1][game->y_p] = 'E';
-		game->moves++;
-		ft_printf("moves : %d\n", game->moves);
-		ft_build(game);
+		help2(game);
 	}
 }
 
 void	move_d(t_game *game)
 {
+	help_clear(game, game->map[game->x_p][game->y_p]);
 	if (game->map[game->x_p][game->y_p] == 'E' && game->n_colect == 0)
 	{
-		mlx_clear_window(game->mlx, game->win);
 		game->map[game->x_p - 1][game->y_p] = '0';
-		game->moves++;
-		ft_printf("moves : %d\n", game->moves);
-		game->endgame = 1;
-		ft_build(game);
-		ft_printf(">>>>>Congratulation you win<<<<<\n");
-		exit(0);
+		help0(game);
 	}
 	else if (game->map[game->x_p][game->y_p] == '1')
 		game->x_p -= 1;
 	else if (game->map[game->x_p][game->y_p] == 'E')
 	{
-		mlx_clear_window(game->mlx, game->win);
 		game->map[game->x_p - 1][game->y_p] = '0';
-		ft_build(game);
-		mlx_put_image_to_window
-		(game->mlx, game->win, game->img.p, game->y_p * 100, game->x_p * 100);
-		game->moves++;
-		ft_printf("moves : %d\n", game->moves);
+		help1(game);
 	}
 	else
 	{
-		mlx_clear_window(game->mlx, game->win);
 		if (game->map[game->x_p][game->y_p] == 'C')
 			game->n_colect -= 1;
 		game->map[game->x_p][game->y_p] = 'P';
@@ -88,40 +64,27 @@ void	move_d(t_game *game)
 			game->map[game->x_p - 1][game->y_p] = '0';
 		else
 			game->map[game->x_p - 1][game->y_p] = 'E';
-		game->moves++;
-		ft_printf("moves : %d\n", game->moves);
-		ft_build(game);
+		help2(game);
 	}
 }
 
 void	move_r(t_game *game)
 {
+	help_clear(game, game->map[game->x_p][game->y_p]);
 	if (game->map[game->x_p][game->y_p] == 'E' && game->n_colect == 0)
 	{
-		mlx_clear_window(game->mlx, game->win);
 		game->map[game->x_p][game->y_p - 1] = '0';
-		game->moves++;
-		ft_printf("moves : %d\n", game->moves);
-		game->endgame = 1;
-		ft_build(game);
-		ft_printf(">>>>>Congratulation you win<<<<<\n");
-		exit(0);
+		help0(game);
 	}
 	else if (game->map[game->x_p][game->y_p] == '1')
 		game->y_p -= 1;
 	else if (game->map[game->x_p][game->y_p] == 'E')
 	{
-		mlx_clear_window(game->mlx, game->win);
 		game->map[game->x_p][game->y_p - 1] = '0';
-		ft_build(game);
-		mlx_put_image_to_window
-		(game->mlx, game->win, game->img.p, game->y_p * 100, game->x_p * 100);
-		game->moves++;
-		ft_printf("moves : %d\n", game->moves);
+		help1(game);
 	}
 	else
 	{
-		mlx_clear_window(game->mlx, game->win);
 		if (game->map[game->x_p][game->y_p] == 'C')
 			game->n_colect -= 1;
 		game->map[game->x_p][game->y_p] = 'P';
@@ -129,40 +92,27 @@ void	move_r(t_game *game)
 			game->map[game->x_p][game->y_p - 1] = '0';
 		else
 			game->map[game->x_p][game->y_p - 1] = 'E';
-		game->moves++;
-		ft_printf("moves : %d\n", game->moves);
-		ft_build(game);
+		help2(game);
 	}
 }
 
 void	move_l(t_game *game)
 {
+	help_clear(game, game->map[game->x_p][game->y_p]);
 	if (game->map[game->x_p][game->y_p] == 'E' && game->n_colect == 0)
 	{
-		mlx_clear_window(game->mlx, game->win);
 		game->map[game->x_p][game->y_p + 1] = '0';
-		game->moves++;
-		ft_printf("moves : %d\n", game->moves);
-		game->endgame = 1;
-		ft_build(game);
-		ft_printf(">>>>>Congratulation you win<<<<<\n");
-		exit(0);
+		help0(game);
 	}
 	else if (game->map[game->x_p][game->y_p] == '1')
 		game->y_p += 1;
 	else if (game->map[game->x_p][game->y_p] == 'E')
 	{
-		mlx_clear_window(game->mlx, game->win);
 		game->map[game->x_p][game->y_p + 1] = '0';
-		ft_build(game);
-		mlx_put_image_to_window
-		(game->mlx, game->win, game->img.p, game->y_p * 100, game->x_p * 100);
-		game->moves++;
-		ft_printf("moves : %d\n", game->moves);
+		help1(game);
 	}
 	else
 	{
-		mlx_clear_window(game->mlx, game->win);
 		if (game->map[game->x_p][game->y_p] == 'C')
 			game->n_colect -= 1;
 		game->map[game->x_p][game->y_p] = 'P';
@@ -170,34 +120,6 @@ void	move_l(t_game *game)
 			game->map[game->x_p][game->y_p + 1] = '0';
 		else
 			game->map[game->x_p][game->y_p + 1] = 'E';
-		game->moves++;
-		ft_printf("moves : %d\n", game->moves);
-		ft_build(game);
+		help2(game);
 	}
-}
-
-void	move_player(int keycode, t_game *game)
-{
-	if (keycode == KEY_W || keycode == KEY_UP)
-	{
-		game->x_p -= 1;
-		move_u(game);
-	}
-	else if (keycode == KEY_S || keycode == KEY_DOWN)
-	{
-		game->x_p += 1;
-		move_d(game);
-	}
-	else if (keycode == KEY_D || keycode == KEY_RIGHT)
-	{
-		game->y_p += 1;
-		move_r(game);
-	}
-	else if (keycode == KEY_A || keycode == KEY_LEFT)
-	{
-		game->y_p -= 1;
-		move_l(game);
-	}
-	else if (keycode == KEY_ESC)
-		close_win();
 }
