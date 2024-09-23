@@ -7,7 +7,7 @@ This project was inspired by classic 2D games and aims to provide an engaging ex
 
 **Final Project Blog Article:** [Your Blog Article Link](#)  
 **Author(s):**  
-- [Noureddine's LinkedIn](#)
+- [Noureddine's LinkedIn](https://www.linkedin.com/in/ettalha0x)](#)
 ## Installation
 To run the so_long game locally, follow these steps:
 
