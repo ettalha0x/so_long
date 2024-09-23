@@ -20,6 +20,6 @@ To run the so_long game locally, follow these steps:
    cd so_long
    ```
 3. run the project
-  ```bash
-  make
-  ```
+   ```bash
+   make
+   ```
